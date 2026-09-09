@@ -1,0 +1,7 @@
+# ملفات ومجلدات بناء Android/Java
+build/
+.gradle/
+local.properties
+*.iml
+.DS_Store
+.idea/

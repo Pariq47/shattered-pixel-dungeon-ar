@@ -1,0 +1,10 @@
+apply plugin: 'java-library'
+
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+java.sourceCompatibility = java.targetCompatibility = appJavaCompatibility
+
+dependencies {
+    api project(':SPD-classes')
+    implementation project(':services')
+    implementation "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
+}
