@@ -3,7 +3,7 @@ name: Build All Platforms (Android, Windows, Linux)
 on:
   push:
     branches: [ main ]
-  workflow_dispatch: # يسمح بتشغيل البناء يدوياً من واجهة GitHub
+  workflow_dispatch:
 
 jobs:
   build-android:
@@ -40,21 +40,12 @@ jobs:
           cache: gradle
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
-
-      # بناء نسخة لينكس
-      - name: Build Linux Desktop
-        run: ./gradlew desktop:distLinux
-      - name: Upload Linux Build
+      
+      - name: Build Desktop Distributions
+        run: ./gradlew desktop:distZip
+        
+      - name: Upload Desktop Build
         uses: actions/upload-artifact@v4
         with:
-          name: ShatteredPD-Arabic-Linux
-          path: desktop/build/libs/*.jar
-
-      # بناء نسخة ويندوز (يتم بناؤها على بيئة لينكس باستخدام Cross-Compilation)
-      - name: Build Windows Desktop
-        run: ./gradlew desktop:distWindows
-      - name: Upload Windows Build
-        uses: actions/upload-artifact@v4
-        with:
-          name: ShatteredPD-Arabic-Windows
-          path: desktop/build/libs/*.exe
+          name: ShatteredPD-Arabic-Desktop
+          path: desktop/build/distributions/*.zip
