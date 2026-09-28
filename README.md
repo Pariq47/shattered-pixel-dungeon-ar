@@ -1,8 +1,36 @@
-# Shattered Pixel Dungeon
+# Shattered Pixel Dungeon - النسخة العربية 🕌
 
-[Shattered Pixel Dungeon](https://shatteredpixel.com/shatteredpd/) is an open-source traditional roguelike dungeon crawler with randomized levels and enemies, and hundreds of items to collect and use. It's based on the [source code of Pixel Dungeon](https://github.com/00-Evan/pixel-dungeon-gradle), by [Watabou](https://watabou.itch.io/).
+[Shattered Pixel Dungeon](https://shatteredpixel.com/shatteredpd/) هي لعبة استكشاف زنزانات (Dungeon Crawler) بأسلوب Roguelike تقليدي مفتوحة المصدر، تتميز بمستويات وأعداء عشوائيين، ومئات الأغراض لجمعها واستخدامها. مبنية على [الكود المصدري للعبة Pixel Dungeon](https://github.com/00-Evan/pixel-dungeon-gradle) بواسطة [Watabou](https://watabou.itch.io/).
 
-Shattered Pixel Dungeon currently compiles for Android, iOS, and Desktop platforms. You can find official releases of the game on:
+## 🌟 مميزات النسخة العربية (بواسطة عبدالله محمد بامطرف)
+
+هذا المستودع يحتوي على تعريب كامل وشامل للعبة مع تحسينات مخصصة للغة العربية:
+
+- **ترجمة كاملة 100%**: ترجمة جميع نصوص اللعبة بما في ذلك القوائم، الحوارات، وصف الأغراض، الوحوش، المواهب، والتحديات.
+- **دعم اتجاه النص (RTL)**: تعديل محرك اللعبة لعرض النصوص من اليمين إلى اليسار بشكل صحيح.
+- **خط عربي بكسلي مخصص**: إنشاء خط `pixel_font_ar.ttf` يتناسب مع الطابع البكسلي للعبة مع الحفاظ على وضوح الحروف العربية.
+- **مُشكّل الحروف العربية (Arabic Reshaper)**: دمج مكتبات متخصصة لربط الحروف العربية وتشكيلها تلقائياً داخل محرك LibGDX.
+- **قلب الأقواس والترقيم**: معالجة ذكية للأقواس وعلامات الترقيم لتظهر بشكل صحيح في البيئة المعكوسة.
+- **بناء تلقائي متعدد المنصات**: إعداد GitHub Actions لبناء اللعبة تلقائياً لأندرويد، ويندوز، ولينكس.
+
+## 👨‍💻 المطوّر والمعَرِّب
+
+**عبدالله محمد بامطرف**  
+تم تطوير هذا التعريب بحب لمجتمع اللاعبين العرب، بهدف تقديم تجربة لعب غامرة وكاملة باللغة العربية.
+
+## 📦 التحميل والتثبيت
+
+يمكنك تحميل أحدث نسخة من اللعبة من قسم [Releases](../../releases) في هذا المستودع:
+
+- **🤖 أندرويد**: ملف `APK` جاهز للتثبيت المباشر.
+- **🪟 ويندوز**: ملف مضغوط يحتوي على اللعبة مع بيئة جافا مدمجة (لا يتطلب تثبيت جافا).
+- **🐧 لينكس**: ملف مضغوط مشابه لنسخة ويندوز.
+
+> ⚠️ **ملاحظة لمستخدمي أندرويد**: هناك مشكلة بسيطة في عرض الأرقام داخل بعض قوائم اللعبة (تظهر كعلامات استفهام)، سيتم حلها في التحديث القادم بإذن الله. نسخة سطح المكتب تعمل بشكل مثالي حالياً.
+
+## 🎮 عن اللعبة الأصلية
+
+تعمل Shattered Pixel Dungeon حالياً على منصات Android و iOS و Desktop. يمكنك العثور على الإصدارات الرسمية من اللعبة على:
 
 [![Get it on Google Play](https://shatteredpixel.com/assets/images/badges/gplay.png)](https://play.google.com/store/apps/details?id=com.shatteredpixel.shatteredpixeldungeon)
 [![Download on the App Store](https://shatteredpixel.com/assets/images/badges/appstore.png)](https://apps.apple.com/app/shattered-pixel-dungeon/id1563121109)
@@ -11,17 +39,22 @@ Shattered Pixel Dungeon currently compiles for Android, iOS, and Desktop platfor
 [![Itch.io](https://shatteredpixel.com/assets/images/badges/itch.png)](https://shattered-pixel.itch.io/shattered-pixel-dungeon)
 [![Github Releases](https://shatteredpixel.com/assets/images/badges/github.png)](https://github.com/00-Evan/shattered-pixel-dungeon/releases)
 
-If you like this game, please consider [supporting me on Patreon](https://www.patreon.com/ShatteredPixel)!
+إذا أعجبتك اللعبة، يرجى النظر في [دعم المطور الأصلي على Patreon](https://www.patreon.com/ShatteredPixel)!
 
-There is an official blog for this project at [ShatteredPixel.com](https://www.shatteredpixel.com/blog/).
+يوجد مدونة رسمية لهذا المشروع على [ShatteredPixel.com](https://www.shatteredpixel.com/blog/).
 
-The game also has a translation project hosted on [Transifex](https://explore.transifex.com/shattered-pixel/shattered-pixel-dungeon/).
+اللعبة لديها أيضاً مشروع ترجمة مستضاف على [Transifex](https://explore.transifex.com/shattered-pixel/shattered-pixel-dungeon/).
 
-Note that **this repository does not accept pull requests!** The code here is provided in hopes that others may find it useful for their own projects, not to allow community contribution. Issue reports of all kinds (bug reports, feature requests, etc.) are welcome.
+## 🛠️ العمل مع الكود المصدري
 
-If you'd like to work with the code, you can find the following guides in `/docs`:
-- [Compiling for Android.](docs/getting-started-android.md)
-    - **[If you plan to distribute on Google Play please read the end of this guide.](docs/getting-started-android.md#distributing-your-app)**
-- [Compiling for desktop platforms.](docs/getting-started-desktop.md)
-- [Compiling for iOS.](docs/getting-started-ios.md)
-- [Recommended changes for making your own version.](docs/recommended-changes.md)
+إذا كنت ترغب في العمل مع الكود أو بناء اللعبة بنفسك، يمكنك العثور على الأدلة التالية في مجلد `/docs`:
+
+- [التجميع لمنصة Android.](docs/getting-started-android.md)
+    - **[إذا كنت تخطط للتوزيع على Google Play، يرجى قراءة نهاية هذا الدليل.](docs/getting-started-android.md#distributing-your-app)**
+- [التجميع لمنصات سطح المكتب.](docs/getting-started-desktop.md)
+- [التجميع لمنصة iOS.](docs/getting-started-ios.md)
+- [التغييرات الموصى بها لإنشاء نسختك الخاصة.](docs/recommended-changes.md)
+
+---
+
+**ملاحظة**: هذا المستودع هو نسخة معدلة للتعريب العربي. للكود الأصلي والتقارير الرسمية، يرجى زيارة [المستودع الرسمي](https://github.com/00-Evan/shattered-pixel-dungeon).
