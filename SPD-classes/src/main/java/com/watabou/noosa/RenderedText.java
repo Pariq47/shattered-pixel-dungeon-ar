@@ -130,10 +130,11 @@ public class RenderedText extends Image {
 			renderedHeight = glyphs.height;
 		}
 	}
-		/* ===== دعم العربية RTL =====
-	   يشكل الحروف العربية ثم يعكس كل سطر لتظهر من اليمين لليسار
-	   داخل محرك libGDX الذي يرسم من اليسار لليمين. */
+	/* ===== دعم العربية RTL (الإصدار الذكي) =====
+	   يعكس ترتيب المقاطع في السطر، ويعكس حروف المقاطع العربية فقط،
+	   ويبقي الأرقام والكلمات اللاتينية بترتيبها الطبيعي */
 	private static boolean containsArabic(String s){
+		if (s == null) return false;
 		for (int i = 0; i < s.length(); i++){
 			char c = s.charAt(i);
 			if ((c >= 0x0600 && c <= 0x06FF) || (c >= 0xFB50 && c <= 0xFDFF) || (c >= 0xFE70 && c <= 0xFEFF)){
@@ -142,7 +143,48 @@ public class RenderedText extends Image {
 		}
 		return false;
 	}
-	
+
+	private static boolean isArabicCh(char c){
+		return (c >= 0x0600 && c <= 0x06FF) || (c >= 0xFB50 && c <= 0xFDFF) || (c >= 0xFE70 && c <= 0xFEFF);
+	}
+
+	private static boolean isDigit(char c){ return c >= '0' && c <= '9'; }
+
+	private static boolean isNumPunct(char c){
+		return c=='-' || c=='/' || c==':' || c=='.' || c=='+' || c=='%' || c==',';
+	}
+
+	private static String reverseLineBidi(String line){
+		java.util.ArrayList<String> tokens = new java.util.ArrayList<>();
+		int i = 0;
+		while (i < line.length()){
+			char c = line.charAt(i);
+			if (isArabicCh(c)){
+				int j = i;
+				while (j < line.length() && isArabicCh(line.charAt(j))) j++;
+				tokens.add(new StringBuilder(line.substring(i, j)).reverse().toString());
+				i = j;
+			} else if (isDigit(c)){
+				int j = i;
+				while (j < line.length() && (isDigit(line.charAt(j)) || isNumPunct(line.charAt(j)))) j++;
+				while (j > i+1 && !isDigit(line.charAt(j-1))) j--;
+				tokens.add(line.substring(i, j));
+				i = j;
+			} else if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')){
+				int j = i;
+				while (j < line.length() && ((line.charAt(j) >= 'a' && line.charAt(j) <= 'z') || (line.charAt(j) >= 'A' && line.charAt(j) <= 'Z'))) j++;
+				tokens.add(line.substring(i, j));
+				i = j;
+			} else {
+				tokens.add(String.valueOf(c));
+				i++;
+			}
+		}
+		StringBuilder vis = new StringBuilder();
+		for (int k = tokens.size()-1; k >= 0; k--) vis.append(tokens.get(k));
+		return vis.toString();
+	}
+
 	private static String toDisplayText(String input){
 		if (input == null || !containsArabic(input)) return input;
 		String shaped = org.amr.arabic.ArabicUtilities.reshape(input);
@@ -150,7 +192,7 @@ public class RenderedText extends Image {
 		String[] lines = shaped.split("\n", -1);
 		StringBuilder out = new StringBuilder();
 		for (int i = 0; i < lines.length; i++){
-			out.append(new StringBuilder(lines[i]).reverse());
+			out.append(reverseLineBidi(lines[i]));
 			if (i < lines.length - 1) out.append("\n");
 		}
 		return out.toString();
